@@ -10,7 +10,6 @@ import {
   Metadata,
   NftCreateData,
   NftFactory,
-  Pool,
   PoolCreationParams,
   Service,
   ZERO_ADDRESS
@@ -211,7 +210,8 @@ export async function createTokensAndPricing(
     mpFeeAddress: appConfig.marketFeeAddress,
     feeToken: config.oceanTokenAddress,
     feeAmount: appConfig.publisherMarketOrderFee,
-    cap: '1000',
+    // max number
+    cap: '115792089237316195423570985008687907853269984665640564039457',
     name: values.services[0].dataTokenOptions.name,
     symbol: values.services[0].dataTokenOptions.symbol
   }
@@ -258,6 +258,12 @@ export async function createTokensAndPricing(
         false
       )
       LoggerInstance.log('[publish] pool.approve tx', txApprove, nftFactory)
+
+      if (!txApprove) {
+        throw new Error(
+          'MetaMask Approve TX Signature: User denied transaction signature'
+        )
+      }
 
       const result = await nftFactory.createNftErc20WithPool(
         accountId,
