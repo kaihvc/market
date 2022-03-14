@@ -178,7 +178,7 @@ export default function Download({
               */
               // <CollectTokensButton />
             }
-            <button>PLACEHOLDER DON'T CLICK</button> // TODO: DELETE THIS
+            <button>PLACEHOLDER DON'T CLICK</button>
           </div>
         )}
 
