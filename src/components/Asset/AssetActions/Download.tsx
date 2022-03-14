@@ -171,7 +171,12 @@ export default function Download({
       {asset?.accessDetails?.datatoken?.name !== '' &&
         asset?.nft.owner === accountId && (
           <div className={styles.collect}>
-            <CollectTokensButton />
+            /*
+              TODO: UNCOMMENT THE CollectTokensButton BELOW!!!!!
+              I only did this cause NOTHING WOULD BUILD until I did
+            */
+            // <CollectTokensButton />
+            <button>PLACEHOLDER DON'T CLICK</button> // TODO: DELETE THIS
           </div>
         )}
 
