@@ -3,8 +3,6 @@ import Markdown from '../../@shared/Markdown'
 
 export default function SampleElement() {
   return (
-    <div>
-      This is your sample component
-    </div>
+    <div>This is your sample component</div>
   )
 }
