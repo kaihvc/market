@@ -26,6 +26,9 @@ import { validationSchema } from './_validation'
 import { useAbortController } from '@hooks/useAbortController'
 import { setNftMetadata } from '@utils/nft'
 
+// Sample S3 testing
+import SampleElement from './S3/example'
+
 // TODO: restore FormikPersist, add back clear form action
 const formName = 'ocean-publish-form'
 
@@ -271,6 +274,7 @@ export default function PublishPage({
             title={<Title networkId={values.user.chainId} />}
             description={content.description}
           />
+          <SampleElement />
           <Form className={styles.form} ref={scrollToRef}>
             <Navigation />
             <Steps feedback={feedback} />
