@@ -1,4 +1,4 @@
-import ReactElement from 'react'
+import React from 'react'
 import Markdown from '../../@shared/Markdown'
 
 export default function SampleElement() {
