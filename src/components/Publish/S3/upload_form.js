@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Upload() {
   const uploadPhoto = async (e) => {
     const file = e.target.files[0];
