@@ -18,8 +18,8 @@ export default async function handler(req, res) {
     Expires: 60, // seconds
     Conditions: [
       ['content-length-range', 0, 1048576], // up to 1 MB
-    ],
+    ]
   });
-
+  console.log(post);
   res.status(200).json(post);
 }
