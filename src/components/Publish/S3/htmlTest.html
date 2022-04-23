@@ -1,9 +1,38 @@
 <html>
   <body>
     <h1>File upload test</h1>
-    <form action="http://niledata-demo.s3.amazonaws.com/AKIATB76YABHB23PT45N" method="put">
+    <script>
+      function handleSubmission(event){
+        const uploadForm = document.getElementById("uploadForm");
+        const formData = new FormData(uploadForm);
+        const testUrl = 'http://localhost:8080/testPut';
+        const url = 'https://niledata-demo.s3.amazonaws.com/AKIATB76YABHB23PT45N';
+        // formData.append('File', selectedFile);
+        console.log("Fetching...");
+        fetch(
+          testUrl,
+          {
+            method: 'PUT',
+            body: formData
+          }
+        ).then(
+          response => response.json()
+        ).then(
+          (result) => {
+            console.log("successful submission to", url);
+          }
+        ).catch(
+          (error) => {
+            console.error("don't code while you're drunk:", error);
+          }
+        )
+
+      }
+    </script>
+    <form id="uploadForm" onsubmit="handleSubmission()" method="post" enctype="multipart/form-data">
       <input type="file" id="fileThing" name="upload">
-      <input type="submit">
+      <input type="hidden" name="_method" value="put">
+      <input type="submit" value="Upload">
     </form>
   </body>
 </html>

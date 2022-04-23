@@ -26,6 +26,7 @@
     "@portis/web3": "^4.0.6",
     "@tippyjs/react": "^4.2.6",
     "@walletconnect/web3-provider": "^1.7.1",
+    "aws-sdk": "^2.1116.0",
     "axios": "^0.25.0",
     "bignumber.js": "^9.0.2",
     "chart.js": "^3.7.0",
