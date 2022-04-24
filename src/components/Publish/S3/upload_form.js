@@ -3,6 +3,8 @@ export default function Upload() {
     const file = e.target.files[0];
     const filename = encodeURIComponent(file.name);
     const res = await fetch(`/api/s3_upload?file=${filename}`);
+    const res_text = await res.text();
+    console.log("Response: " + res_text);
     const { url, fields } = await res.json();
     const formData = new FormData();
 
