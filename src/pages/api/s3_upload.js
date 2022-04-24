@@ -1,5 +1,9 @@
 import aws from 'aws-sdk';
 
+/*
+  This page is obsolete
+*/
+
 // from https://github.com/leerob/nextjs-aws-s3
 export default async function handler(req, res) {
   aws.config.update({
@@ -20,6 +24,5 @@ export default async function handler(req, res) {
       ['content-length-range', 0, 1048576], // up to 1 MB
     ]
   });
-  console.log(post);
   res.status(200).json(post);
 }
