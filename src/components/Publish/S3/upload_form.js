@@ -39,7 +39,7 @@ async function getPresignedURL(filename) {
 export default function Upload() {
 
   // let urlToSet = "Loading...";
-  const { downloadUrl, setDownloadUrl } = useState("Loading...");
+  const [ downloadUrl, setDownloadUrl ] = useState("Loading...");
 
   const uploadFile = async (e) => {
     const file = e.target.files[0];
@@ -65,6 +65,7 @@ export default function Upload() {
         console.error('Upload failed.');
       }
 
+      console.log("Setting URL...");
       setDownloadUrl("https://niledata-demo.s3.us-west-1.amazonaws.com/" + encodeURIComponent(file.name));
       console.log("Download URL: " + downloadUrl);
 
