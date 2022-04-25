@@ -1,5 +1,5 @@
 import { Form } from 'formik'
-import { Upload } from './upload_form'
+import Upload from './upload_form'
 import styles from '../index.module.css'
 import Actions from '../Actions'
 import { Steps } from '../Steps'
