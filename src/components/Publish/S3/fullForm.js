@@ -12,7 +12,7 @@ export default function FullForm(props) {
   const [downloadUrl, setDownloadUrl] = useState("");
   const value = { downloadUrl, setDownloadUrl };
 
-  { className, ref, feedback, scrollToRef, did } = props;
+  const { className, ref, feedback, scrollToRef, did } = props;
 
   return (
     <DownloadContext.Provider value={value}>
