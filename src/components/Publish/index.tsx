@@ -259,6 +259,17 @@ export default function PublishPage({
     // if (checksumBefore !== checksumAfter) {
     //   throw new Error('DDO integrity check failed!')
     // }
+    
+    /*
+      For future reference, we might also try to wrap the whole form in this so we can
+        update the URL (import FullForm from './S3/fullForm')
+      <FullForm
+        className={styles.form}
+        ref={scrollToRef}
+        feedback={feedback}
+        did={did}
+      />
+    */
   }
 
   return isInPurgatory && purgatoryData ? null : (
@@ -287,16 +298,4 @@ export default function PublishPage({
       )}
     </Formik>
   )
-
-  /*
-    For future reference, we might also try to wrap the whole form in this so we can
-      update the URL (import FullForm from './S3/fullForm')
-    <FullForm
-      className={styles.form}
-      ref={scrollToRef}
-      feedback={feedback}
-      did={did}
-    />
-  */
-
 }
