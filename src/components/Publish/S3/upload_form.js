@@ -34,56 +34,76 @@ async function getPresignedURL(filename) {
 
 }
 
-// async function handler(req, res) {
-//   res.status(200).json(post);
-// }
+function generateDownloadURL(filename){
 
+  // Generate url
+  const encodedFilename = encodeURIComponent(filename);
+  return "https://niledata-demo.s3.us-west-1.amazonaws.com/" + encodedFilename;
+
+}
+
+function updateProviderURL(filename){
+
+  const url = generateDownloadURL(filename);
+
+  // Create new state variable "downloadUrl" and initialize to empty string
+  const [downloadUrl, setDownloadUrl] = useState("");
+
+
+}
 
 export default function Upload() {
 
-  const uploadPhoto = async (e) => {
+  let urlToSet = "";
+
+  const { downloadUrl, setDownloadUrl } = useDownloadUrl();
+
+  const uploadFile = async (e) => {
     const file = e.target.files[0];
 
-    // getPresignedURL() returns a destructurable object
-    const { url, fields } = await getPresignedURL(file.name);
+    if(!(file === undefined)){
+      // getPresignedURL() returns a destructurable object
+      const { url, fields } = await getPresignedURL(file.name);
+      const formData = new FormData();
 
-    // Next block: old code
-    // const filename = encodeURIComponent(file.name);
-    // const res = await fetch(`/api/upload-url?file=${filename}`);
-    // // DEBUG; shit won't work unless these are commented
-    // const resText = await res.text();
-    // console.log(resText);
-    // const { url, fields } = await res.json();
+      Object.entries({ ...fields, file }).forEach(([key, value]) => {
+        formData.append(key, value);
+      });
 
-    const formData = new FormData();
+      const upload = await fetch(url, {
+        method: 'POST',
+        body: formData,
+      });
 
-    Object.entries({ ...fields, file }).forEach(([key, value]) => {
-      formData.append(key, value);
-    });
+      if (upload.ok) {
+        console.log('Uploaded successfully!');
+      } else {
+        console.error('Upload failed.');
+      }
 
-    const upload = await fetch(url, {
-      method: 'POST',
-      body: formData,
-    });
+      urlToSet = generateDownloadUrl(file.name);
+      console.log(urlToSet);
 
-    if (upload.ok) {
-      console.log('Uploaded successfully!');
-    } else {
-      console.error('Upload failed.');
     }
 
-    // TODO: add Provider URL change functionality
+  };
 
+  const handleClick = () => {
+    setDownloadUrl(urlToSet);
+    console.log("Updated downloadUrl");
   };
 
   return (
     <>
       <p>Upload a .png or .jpg image (max 1MB).</p>
-      <input
-        type="file"
-        onChange={uploadPhoto}
-        accept="image/png, image/jpeg"
-      />
+      <form method="post">
+        <input
+          type="file"
+          onChange={uploadFile}
+        />
+        <input type="button" onClick={handleClick} value="Update"/>
+      </form>
     </>
   );
+
 }

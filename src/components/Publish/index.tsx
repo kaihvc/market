@@ -27,8 +27,9 @@ import { useAbortController } from '@hooks/useAbortController'
 import { setNftMetadata } from '@utils/nft'
 
 // Sample S3 testing
-import SampleElement from './S3/example'
-import Upload from './S3/upload_form'
+// import SampleElement from './S3/example'
+// import Upload from './S3/upload_form'
+import FullForm from './S3/fullForm'
 
 // TODO: restore FormikPersist, add back clear form action
 const formName = 'ocean-publish-form'
@@ -275,12 +276,12 @@ export default function PublishPage({
             title={<Title networkId={values.user.chainId} />}
             description={content.description}
           />
-          <Upload />
-          <Form className={styles.form} ref={scrollToRef}>
-            <Navigation />
-            <Steps feedback={feedback} />
-            <Actions scrollToRef={scrollToRef} did={did} />
-          </Form>
+          <FullForm
+            className={styles.form}
+            ref={scrollToRef}
+            feedback={feedback}
+            did={did}
+          />
           {debug && <Debug />}
         </>
       )}
