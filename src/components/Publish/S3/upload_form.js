@@ -65,9 +65,8 @@ export default function Upload() {
         console.error('Upload failed.');
       }
 
-      urlToSet = "https://niledata-demo.s3.us-west-1.amazonaws.com/" + encodeURIComponent(file.name);
-      console.log("Download URL: " + urlToSet);
-      setDownloadUrl(urlToSet);
+      setDownloadUrl("https://niledata-demo.s3.us-west-1.amazonaws.com/" + encodeURIComponent(file.name));
+      console.log("Download URL: " + downloadUrl);
 
     }
 
