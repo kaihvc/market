@@ -46,6 +46,7 @@ export default function Upload() {
     const file = e.target.files[0];
 
     if(!(file === undefined)){
+
       // getPresignedURL() returns a destructurable object
       const { url, fields } = await getPresignedURL(file.name);
       const formData = new FormData();
@@ -78,8 +79,8 @@ export default function Upload() {
       <form method="post">
         <input
           type="file"
+          onChange={uploadFile}
         />
-        <input type="button" onClick={uploadFile} value="Update"/>
       </form>
       <p>Download URL (copy this into the "Provider URL" box below): {urlToSet}</p>
     </>
