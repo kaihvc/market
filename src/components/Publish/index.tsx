@@ -28,8 +28,8 @@ import { setNftMetadata } from '@utils/nft'
 
 // Sample S3 testing
 // import SampleElement from './S3/example'
-// import Upload from './S3/upload_form'
-import FullForm from './S3/fullForm'
+import Upload from './S3/upload_form'
+// import FullForm from './S3/fullForm'
 
 // TODO: restore FormikPersist, add back clear form action
 const formName = 'ocean-publish-form'
@@ -276,15 +276,27 @@ export default function PublishPage({
             title={<Title networkId={values.user.chainId} />}
             description={content.description}
           />
-          <FullForm
-            className={styles.form}
-            ref={scrollToRef}
-            feedback={feedback}
-            did={did}
-          />
+          <Upload />
+          <Form className={styles.form} ref={scrollToRef}>
+            <Navigation />
+            <Steps feedback={feedback} />
+            <Actions scrollToRef={scrollToRef} did={did} />
+          </Form>
           {debug && <Debug />}
         </>
       )}
     </Formik>
   )
+
+  /*
+    For future reference, we might also try to wrap the whole form in this so we can
+      update the URL (import FullForm from './S3/fullForm')
+    <FullForm
+      className={styles.form}
+      ref={scrollToRef}
+      feedback={feedback}
+      did={did}
+    />
+  */
+
 }

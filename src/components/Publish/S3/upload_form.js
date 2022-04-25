@@ -42,7 +42,7 @@ export default function Upload() {
 
   const { downloadUrl, setDownloadUrl } = useDownloadUrl();
 
-  const uploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
+  const uploadFile = async (e) => {
     const file = e.target.files[0];
 
     if(!(file === undefined)){
@@ -66,15 +66,10 @@ export default function Upload() {
       }
 
       urlToSet = "https://niledata-demo.s3.us-west-1.amazonaws.com/" + encodeURIComponent(file.name);
-      console.log(urlToSet);
+      console.log("Download URL: " + urlToSet);
 
     }
 
-  };
-
-  const handleClick = () => {
-    setDownloadUrl(urlToSet);
-    console.log("Updated downloadUrl");
   };
 
   return (
@@ -82,11 +77,11 @@ export default function Upload() {
       <p>Upload a file.</p>
       <form method="post">
         <input
-          type="file"
-          onChange={uploadFile}
+          type="file"\
         />
-        <input type="button" onClick={handleClick} value="Update"/>
+        <input type="button" onClick={uploadFile} value="Update"/>
       </form>
+      <p>Download URL (copy this into the "Provider URL" box below): {urlToSet}</p>
     </>
   );
 
