@@ -1,5 +1,5 @@
 import aws from 'aws-sdk';
-import { React, useState } from 'react'
+import { useState } from 'react'
 import { useDownloadUrl } from '../../../@context/useDownloadUrl'
 
 async function getPresignedURL(filename) {
