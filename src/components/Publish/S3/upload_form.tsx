@@ -1,5 +1,5 @@
 import aws from 'aws-sdk';
-import { useState } from 'react'
+import { React, useState } from 'react'
 import { useDownloadUrl } from '../../../@context/useDownloadUrl'
 
 async function getPresignedURL(filename) {
@@ -42,7 +42,7 @@ export default function Upload() {
 
   const { downloadUrl, setDownloadUrl } = useDownloadUrl();
 
-  const uploadFile = async (e) => {
+  const uploadFile = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files[0];
 
     if(!(file === undefined)){
