@@ -1,5 +1,5 @@
-import aws from 'aws-sdk';
-// import { useState } from 'react'
+import aws from 'aws-sdk'
+import { useState } from 'react'
 // import { useDownloadUrl } from '../../../@context/useDownloadUrl'
 
 async function getPresignedURL(filename) {
@@ -38,9 +38,8 @@ async function getPresignedURL(filename) {
 
 export default function Upload() {
 
-  let urlToSet = "";
-
-  // const { downloadUrl, setDownloadUrl } = useDownloadUrl();
+  // let urlToSet = "Loading...";
+  const { downloadUrl, setDownloadUrl } = useState("Loading...");
 
   const uploadFile = async (e) => {
     const file = e.target.files[0];
@@ -68,6 +67,7 @@ export default function Upload() {
 
       urlToSet = "https://niledata-demo.s3.us-west-1.amazonaws.com/" + encodeURIComponent(file.name);
       console.log("Download URL: " + urlToSet);
+      setDownloadUrl(urlToSet);
 
     }
 
@@ -82,7 +82,7 @@ export default function Upload() {
           onChange={uploadFile}
         />
       </form>
-      <p>Download URL (copy this into the "Provider URL" box below): {urlToSet}</p>
+      <p>Download URL (copy this into the "Provider URL" box below): {downloadUrl}</p>
     </>
   );
 
