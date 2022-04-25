@@ -40,7 +40,7 @@ export default function Upload() {
 
   let urlToSet = "";
 
-  const { downloadUrl, setDownloadUrl } = useDownloadUrl();
+  // const { downloadUrl, setDownloadUrl } = useDownloadUrl();
 
   const uploadFile = async (e) => {
     const file = e.target.files[0];
