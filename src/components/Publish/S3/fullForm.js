@@ -5,9 +5,9 @@ import Actions from '../Actions'
 import { Steps } from '../Steps'
 import Navigation from '../Navigation'
 import { DownloadContext } from '../../../@context/useDownloadUrl'
+import { useState } from 'react'
 
-
-export default function FullForm(props) {
+export default function FullForm(props){
 
   const [downloadUrl, setDownloadUrl] = useState("");
   const value = { downloadUrl, setDownloadUrl };
@@ -24,5 +24,4 @@ export default function FullForm(props) {
       </Form>
     </DownloadContext.Provider>
   );
-
 }

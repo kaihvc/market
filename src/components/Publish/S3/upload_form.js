@@ -1,4 +1,6 @@
 import aws from 'aws-sdk';
+import { useState } from 'react'
+import { useDownloadUrl } from '../../../@context/useDownloadUrl'
 
 async function getPresignedURL(filename) {
 
@@ -34,24 +36,6 @@ async function getPresignedURL(filename) {
 
 }
 
-function generateDownloadURL(filename){
-
-  // Generate url
-  const encodedFilename = encodeURIComponent(filename);
-  return "https://niledata-demo.s3.us-west-1.amazonaws.com/" + encodedFilename;
-
-}
-
-function updateProviderURL(filename){
-
-  const url = generateDownloadURL(filename);
-
-  // Create new state variable "downloadUrl" and initialize to empty string
-  const [downloadUrl, setDownloadUrl] = useState("");
-
-
-}
-
 export default function Upload() {
 
   let urlToSet = "";
@@ -81,7 +65,7 @@ export default function Upload() {
         console.error('Upload failed.');
       }
 
-      urlToSet = generateDownloadUrl(file.name);
+      urlToSet = "https://niledata-demo.s3.us-west-1.amazonaws.com/" + encodeURIComponent(file.name);
       console.log(urlToSet);
 
     }
@@ -95,7 +79,7 @@ export default function Upload() {
 
   return (
     <>
-      <p>Upload a .png or .jpg image (max 1MB).</p>
+      <p>Upload a file.</p>
       <form method="post">
         <input
           type="file"
