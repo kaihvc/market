@@ -77,7 +77,7 @@ export default function Upload() {
       <p>Upload a file.</p>
       <form method="post">
         <input
-          type="file"\
+          type="file"
         />
         <input type="button" onClick={uploadFile} value="Update"/>
       </form>
